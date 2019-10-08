@@ -49,35 +49,41 @@ class App extends Component {
     };
 
     return (
-      !this.state.isAuthenticating &&
-      <div className="App container">
-        <Navbar fluid collapseOnSelect>
-          <Navbar.Header>
-            <Navbar.Brand>
-              <Link to="/">Scratch</Link>
-            </Navbar.Brand>
-            <Navbar.Toggle />
-          </Navbar.Header>
-          <Navbar.Collapse>
-            <Nav pullRight>
-              {this.state.isAuthenticated
-                ? <NavItem onClick={this.handleLogout}>Logout</NavItem>
-                : <Fragment>
-                    <LinkContainer to="/signup">
-                      <NavItem>Signup</NavItem>
-                    </LinkContainer>
-                    <LinkContainer to="/login">
-                      <NavItem>Login</NavItem>
-                    </LinkContainer>
-                  </Fragment>
-              }
-            </Nav>
-          </Navbar.Collapse>
-        </Navbar>
-        <Routes childProps={childProps} />
-      </div>
+        !this.state.isAuthenticating &&
+        <div className="App container">
+          <Navbar fluid collapseOnSelect>
+            <Navbar.Header>
+              <Navbar.Brand>
+                <Link to="/">Scratch</Link>
+              </Navbar.Brand>
+              <Navbar.Toggle />
+            </Navbar.Header>
+            <Navbar.Collapse>
+              <Nav pullRight>
+                {this.state.isAuthenticated
+                    ? <Fragment>
+                      <LinkContainer to="/settings">
+                        <NavItem>Settings</NavItem>
+                      </LinkContainer>
+                      <NavItem onClick={this.handleLogout}>Logout</NavItem>
+                    </Fragment>
+                    : <Fragment>
+                      <LinkContainer to="/signup">
+                        <NavItem>Signup</NavItem>
+                      </LinkContainer>
+                      <LinkContainer to="/login">
+                        <NavItem>Login</NavItem>
+                      </LinkContainer>
+                    </Fragment>
+                }
+              </Nav>
+            </Navbar.Collapse>
+          </Navbar>
+          <Routes childProps={childProps} />
+        </div>
     );
   }
+
 }
 
 export default withRouter(App);
